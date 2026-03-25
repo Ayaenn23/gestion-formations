@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'language',
+        'is_active',
     ];
 
     /**
@@ -40,5 +43,16 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_active' => 'boolean',
     ];
+
+    public function posts() {
+        return $this->hasMany(Post::class, 'author_id');
+    }
+    public function trainingSessions() {
+        return $this->hasMany(TrainingSession::class, 'trainer_id');
+    }
+    public function enrollments() {
+        return $this->hasMany(Enrollment::class);
+    }
 }
