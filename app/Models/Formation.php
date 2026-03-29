@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\FormationStatus;
 
 class Formation extends Model
 {
@@ -27,6 +28,10 @@ class Formation extends Model
         'seo_title_en',
         'seo_description_fr',
         'seo_description_en',
+    ];
+
+    protected $casts = [
+        'statut' => FormationStatus::class,
     ];
 
     public function category()

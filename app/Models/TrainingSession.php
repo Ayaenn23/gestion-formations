@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\SessionMode;
 
 class TrainingSession extends Model
 {
@@ -17,6 +18,12 @@ class TrainingSession extends Model
         'lien_reunion',
         'statut',
     ];
+
+ protected $casts = [
+        'mode' => SessionMode::class,
+    ];
+
+
     public function formation()
     {
         return $this->belongsTo(Formation::class);
