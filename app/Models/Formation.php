@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\FormationStatus;
+use App\Traits\HasSeo;
+use App\Traits\HasSlug;
 
 class Formation extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug, HasSeo;
     protected $fillable = [
         'titre_fr',
         'titre_en',

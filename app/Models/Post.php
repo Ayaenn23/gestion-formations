@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasSlug;
+use App\Traits\HasSeo;
 
 class Post extends Model
 {
-    use HasFactory;
+
+    use HasFactory, HasSlug, HasSeo;
     protected $fillable = [
         'title_fr',
         'title_en',

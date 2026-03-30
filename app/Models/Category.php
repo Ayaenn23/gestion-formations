@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasSlug;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $fillable = [
-    'name_fr',
-    'name_en',
-    'slug_fr',
-    'slug_en',
-];
+        'name_fr',
+        'name_en',
+        'slug_fr',
+        'slug_en',
+    ];
 
-  public function formations()
+    public function formations()
     {
         return $this->hasMany(Formation::class);
     }
@@ -25,5 +26,4 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
-
 }
