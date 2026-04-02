@@ -12,6 +12,7 @@ class Formation extends Model
 {
     use HasFactory, HasSlug, HasSeo;
     protected $fillable = [
+        'category_id',
         'titre_fr',
         'titre_en',
         'slug_fr',

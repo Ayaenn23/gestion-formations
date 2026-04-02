@@ -10,6 +10,8 @@ class TrainingSession extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'formation_id',
+        'trainer_id',
         'start_date',
         'end_date',
         'capacity',
@@ -19,7 +21,7 @@ class TrainingSession extends Model
         'statut',
     ];
 
- protected $casts = [
+    protected $casts = [
         'mode' => SessionMode::class,
     ];
 
@@ -37,4 +39,3 @@ class TrainingSession extends Model
         return $this->hasMany(Enrollment::class);
     }
 }
-

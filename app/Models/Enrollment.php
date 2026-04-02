@@ -10,6 +10,8 @@ class Enrollment extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
+        'training_session_id',
         'statut',
         'enrollment_ref',
         'note',
@@ -17,7 +19,7 @@ class Enrollment extends Model
         'cancellation_date',
     ];
 
-     protected $casts = [
+    protected $casts = [
         'statut' => EnrollmentStatus::class,
     ];
 
@@ -30,5 +32,4 @@ class Enrollment extends Model
     {
         return $this->belongsTo(TrainingSession::class);
     }
-
 }

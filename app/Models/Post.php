@@ -12,6 +12,8 @@ class Post extends Model
 
     use HasFactory, HasSlug, HasSeo;
     protected $fillable = [
+        'author_id',
+        'category_id',
         'title_fr',
         'title_en',
         'slug_fr',
@@ -27,11 +29,13 @@ class Post extends Model
         'seo_description_en',
     ];
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo(User::class, 'author_id');
     }
 }
