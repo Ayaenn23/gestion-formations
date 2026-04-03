@@ -21,5 +21,32 @@ class UserSeeder extends Seeder
             'language' => 'fr',
         ]);
         $user->assignRole('super_admin');
+
+        $admin = User::create([
+            'name' => 'Admin Test',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
+            'is_active' => true,
+            'language' => 'fr',
+        ]);
+        $admin->assignRole('super_admin');
+
+        $formateur = User::create([
+            'name' => 'Formateur Test',
+            'email' => 'formateur@example.com',
+            'password' => bcrypt('password'),
+            'is_active' => true,
+            'language' => 'fr',
+        ]);
+        $formateur->assignRole('formateur');
+
+        $participant = User::create([
+            'name' => 'Participant Test',
+            'email' => 'participant@example.com',
+            'password' => bcrypt('password'),
+            'is_active' => true,
+            'language' => 'fr',
+        ]);
+        $participant->assignRole('participant');
     }
 }

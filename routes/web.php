@@ -37,17 +37,25 @@ Route::prefix('admin')
     ->middleware(['auth', 'active'])
     ->name('admin.')
     ->group(function () {
+
+        // Dashboard accessible à tous les connectés actifs
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
         })->name('dashboard');
-        Route::resource('categories', CategoryController::class);
-        Route::resource('users', UserController::class);
-        Route::resource('formations', FormationController::class);
-        Route::resource('sessions', TrainingSessionController::class);
-        Route::resource('enrollments', EnrollmentController::class);
-        Route::resource('posts', PostController::class);
 
+        // Accessible uniquement aux super_admin et admin
+        Route::middleware('role:super_admin|admin')->group(function () {
+            Route::resource('users', UserController::class);
+            Route::resource('categories', CategoryController::class);
+            Route::resource('formations', FormationController::class);
+            Route::resource('enrollments', EnrollmentController::class);
+            Route::resource('posts', PostController::class);
+        });
 
+        // Accessible aussi aux formateurs
+        Route::middleware('role:super_admin|admin|formateur')->group(function () {
+            Route::resource('sessions', TrainingSessionController::class);
+        });
     });
 // Routes profil
 Route::middleware('auth')->group(function () {
@@ -56,4 +64,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::get('/sitemap.xml', function () {
+    $formations = \App\Models\Formation::where('statut', 'publié')->get();
+    $posts = \App\Models\Post::where('statut', 'publié')->get();
+
+    return response()
+        ->view('sitemap', compact('formations', 'posts'))
+        ->header('Content-Type', 'application/xml');
+});
 require __DIR__ . '/auth.php';

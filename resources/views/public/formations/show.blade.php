@@ -1,5 +1,10 @@
 @extends('layouts.public')
-
+@php
+    $seoTitle = $formation->{'seo_title_' . active_locale()}
+                ?? $formation->{'titre_' . active_locale()};
+    $metaDescription = $formation->{'seo_description_' . active_locale()}
+                       ?? $formation->{'description_courte_' . active_locale()};
+@endphp
 @section('content')
 
 <div class="bg-gray-50 border-b border-gray-200">

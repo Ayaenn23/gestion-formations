@@ -1,5 +1,10 @@
 @extends('layouts.public')
-
+@php
+    $seoTitle = $post->{'seo_title_' . active_locale()}
+                ?? $post->{'title_' . active_locale()};
+    $metaDescription = $post->{'meta_description_' . active_locale()}
+                       ?? '';
+@endphp
 @section('content')
 
 <div class="bg-gray-50 border-b border-gray-200">
